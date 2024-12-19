@@ -29,7 +29,7 @@ async function fetchData(){
 
 const delay=delayInput.value
         if (!text) {
-            
+                outputDiv.innerText = ''
             return;
         }
 
