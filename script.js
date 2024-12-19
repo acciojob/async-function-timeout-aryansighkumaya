@@ -27,9 +27,9 @@ async function fetchData(){
     try {
         const text = textInput.value; // Get the text from input
 
-const delay=delayInput.value.value
+const delay=delayInput.value
         if (!text) {
-            outputDiv.innerText = "Please enter some text.";
+            
             return;
         }
 
