@@ -5,6 +5,10 @@ const delayInput = document.getElementById('delay');
 const outputDiv=document.getElementById('output')
 const btn=document.getElementById('btn')
 
+   textInput.value = '';
+    delayInput.value = '';
+    outputDiv.innerText = '';
+
  function getData(text,delay){
 
         return new Promise((resolve)=>{
@@ -28,10 +32,7 @@ async function fetchData(){
         const text = textInput.value; // Get the text from input
 
 const delay=delayInput.value
-        if (!text) {
-                outputDiv.innerText = ''
-            return;
-        }
+       
 
         const data = await getData(text,delay); // Wait for the promise to resolve
         outputDiv.innerText = data; // Display the resolved value
