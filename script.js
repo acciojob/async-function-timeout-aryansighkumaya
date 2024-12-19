@@ -1,49 +1,39 @@
-        
-        
-
-const btn=document.getElementById('btn')
-
- function getData(text,delay){
-
-        return new Promise((resolve)=>{
-            setTimeout(()=>{
-                resolve(text)
-                })
-                
-                
-                
-                },delay)
-            }
-        
-        
-    
-
-
-
-async function fetchData(){
-const textInput=document.getElementById('text')
+const textInput = document.getElementById('text');
 const delayInput = document.getElementById('delay');
-const outputDiv=document.getElementById('output')
+const outputDiv = document.getElementById('output');
+const btn = document.getElementById('btn');
 
-  outputDiv.textContent = "";
-	
-    event.preventDefault();
-    try {
-const text = textInput.value; // Get the text from input
-const delay=delayInput.value
-        if (text && delay) {
-          const data = await getData(text,delay); // Wait for the promise to resolve
-        outputDiv.textContent = data; // Display the resolved value
-        }
-
-        
-    } catch (error) {
-        console.error("Error:", error);
-    }
-
-   
+// Function to create a promise that resolves after the given delay
+function getData(text, delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(text);
+    }, delay);
+  });
 }
 
+// Async function to handle the click event and display the output
+async function fetchData(event) {
+  event.preventDefault(); // Prevent form submission default behavior
 
+  // Clear the output div
+  outputDiv.textContent = '';
 
-btn.addEventListener("click",fetchData)
+  try {
+    const text = textInput.value; // Get the text from input
+    const delay = parseInt(delayInput.value, 10); // Parse the delay input as an integer
+
+    // Validate inputs
+    if (text && delay) {
+      const data = await getData(text, delay); // Wait for the promise to resolve
+      outputDiv.textContent = data; // Display the resolved value
+    } else {
+      outputDiv.textContent = 'Please enter valid text and delay.';
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+// Attach event listener to the button
+btn.addEventListener('click', fetchData);
